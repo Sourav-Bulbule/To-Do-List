@@ -1,4 +1,6 @@
-const todoList = [{
+
+
+let todoList = JSON.parse(localStorage.getItem('todoList'))||[{
   name: '',
   date:''
 },{
@@ -24,14 +26,18 @@ for(let i=0;i<todoList.length;i++){
   </button>  
   `;
   combinedHTML +=creatingHTML;
+  
 }
 }
+
 document.querySelector('.html-element').innerHTML = combinedHTML;
+localStorage.setItem('todoList',JSON.stringify(todoList));
 
 // console.log(combinedHTML)
 }
 
 function addTodo(){  
+  
   const data1 = document.querySelector('.inputvalue');
   const data2 = document.querySelector('.inputdate');
   const name = data1.value;
@@ -43,6 +49,7 @@ function addTodo(){
     name,
     date
   });
+  localStorage.setItem('todoList',JSON.stringify(todoList));
   // console.log(todoList);
   data1.value= '';
   data2.value= '';
